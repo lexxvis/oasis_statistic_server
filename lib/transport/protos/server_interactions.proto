@@ -1,0 +1,91 @@
+// when dart version is changed update plugin with command
+// dart pub global activate protoc_plugin
+// protoc *.proto --dart_out=grpc:./generated
+
+syntax = "proto3";
+package server_interactions;
+
+option java_multiple_files = true;
+option java_package = "com.lexxvis.oasispoker";
+option java_outer_classname = "ServerInteractions";
+
+enum ResultStatus {
+  CODE_UNSPECIFIED = 0;
+  OK = 1;
+  ERROR = 2;
+  TOKEN_NOT_FOUND = 3;
+}
+
+service  Interactions {
+  rpc EstablishConnection(ConnectionRequest) returns (ConnectionReply);
+  rpc StatisticsData(StatisticsDataRequest) returns (StatisticsDataReply);
+  rpc AdsStatisticData(AdsStatisticRequest) returns (StatisticsDataReply);
+  rpc SendErrorsLog(stream ErrorLogItem) returns (StatisticsDataReply);
+  rpc CloseConnection(CloseInformation) returns (Empty);
+}
+
+message ErrorLogItem {
+  bytes message = 1;
+  bytes digest = 2;
+  bytes iv = 3;
+}
+
+
+message AdsStatisticRequest {
+  enum AdsSource {
+    CODE_UNSPECIFIED = 0;
+    UNITY_INTERSTITIALS = 1;
+    UNITY_REWARDED = 2;
+    UNITY_BANNER = 3;
+    ADMOB_INTERSTITIALS = 4;
+    ADMOB_REWARDED = 5;
+    ADMOB_BANNER = 6;
+  }
+  AdsSource ads_source = 1;
+  bytes digest = 2;
+}
+
+
+message StatisticsDataRequest {
+  bytes encrypted_data = 1;
+  bytes digest = 2;
+  bytes iv = 3;
+}
+
+message StatisticsDataReply {
+  ResultStatus result = 1;
+  bytes digest = 2;
+  bytes iv = 3;
+}
+
+message ConnectionRequest {
+  bytes encrypted_data = 1;
+  bytes dh_exchange_key = 2;
+}
+
+message ConnectionReply {
+  enum Result {
+    CODE_UNSPECIFIED = 0;
+    OK = 1;
+    ERROR = 2;
+    ALREADY_EXIST = 3;
+  }
+  Result result = 1;
+  bytes dh_exchange_key = 2;
+  bytes digest = 3;
+  string token = 4;
+}
+
+
+
+message CloseInformation {
+  enum Result {
+    CODE_UNSPECIFIED = 0;
+    NORMAL_ACTION = 1;
+    ERROR_ACTION = 2;
+  }
+  Result result = 1;
+  string player_id = 2;
+}
+
+message Empty {}

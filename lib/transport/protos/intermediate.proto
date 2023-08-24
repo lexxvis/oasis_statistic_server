@@ -1,0 +1,36 @@
+syntax = "proto3";
+package intermediate;
+
+option java_multiple_files = true;
+option java_package = "com.lexxvis.oasispoker";
+option java_outer_classname = "IntermediateProto";
+
+
+message ConnectionRequestData {
+  string player_id = 1;  // String RSA encrypted
+  string country_code = 2;  // String RSA encrypted
+}
+
+
+
+message GameStatisticData {
+  int32 balance = 1;  // current balance
+  int32 goldBalance = 2; // current gold balance
+  int32 bet = 3;  // total bet in game (ante + call(2*ante) + draw cost)
+  int32 win = 4;  // win in game
+  int32 ante = 5; // game ante
+  int32 level = 6;  // current game level
+  int32 gameResult =7;  // result of the game
+  //bool hasCallDraw = 8; // if true - player calls draw
+
+  message CardDescription {
+    int32 suit = 1;
+    int32 value = 2;
+  }
+
+  repeated CardDescription dealerHand = 9;  // dealer hand
+  repeated CardDescription playerHand = 10;  // player game hand (after call draw or without call draw
+  repeated CardDescription playerUnchangedHand = 11; // player hand before call draw if hasCallDraw = true
+}
+
+
