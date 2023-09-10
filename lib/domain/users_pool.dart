@@ -13,6 +13,8 @@ abstract interface class UsersPool {
 
   bool updateLastActiveTime(String token);
 
+  String? getPlayerId(String token);
+
   Uint8List? getAESKey(String token);
 
   int get poolSize;

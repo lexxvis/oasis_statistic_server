@@ -25,6 +25,7 @@ class WorkingService extends InteractionsServiceBase {
   Future<ConnectionReply> establishConnection(
       ServiceCall call, ConnectionRequest request) {
     var establishConnection = _services.establishConnection;
+    logger('establish connection hash = ${establishConnection.hashCode}');
     return establishConnection(params: request);
   }
 

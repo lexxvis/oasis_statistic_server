@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:typed_data';
-import '../services/users_pool.dart';
+import '../domain/users_pool.dart';
+import '../utils/logger.dart';
 import 'models/active_user_model.dart';
 
 final class UsersPoolImpl implements UsersPool {
@@ -21,9 +22,12 @@ final class UsersPoolImpl implements UsersPool {
         Timer.periodic(const Duration(seconds: _invokeDelaySec), (timer) {
       var currentMilliseconds = DateTime.now().millisecondsSinceEpoch;
 
-      print(_activeUsersPool);
       _activeUsersPool.removeWhere((key, user) =>
           (user.lastActivityTime + _removeTimeOutMs < currentMilliseconds));
+      if (_activeUsersPool.isNotEmpty) {
+        logger('users counter: ${_activeUsersPool.length}');
+        logger('$_activeUsersPool');
+      }
     });
   }
 
@@ -56,8 +60,6 @@ final class UsersPoolImpl implements UsersPool {
     return false;
   }
 
-  //ActiveUserModel? getUser(String token) => _activeUsersPool[token];
-
   @override
   bool doesUserExist(String token) => _activeUsersPool.containsKey(token);
 
@@ -74,5 +76,8 @@ final class UsersPoolImpl implements UsersPool {
 
   @override
   Uint8List? getAESKey(String token) => _activeUsersPool[token]?.sessionAESKey;
+
+  @override
+  String? getPlayerId(String token) => _activeUsersPool[token]?.playerId;
 
 }

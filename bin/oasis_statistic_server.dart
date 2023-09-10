@@ -18,11 +18,13 @@
 *  execute ./oasis_server.exe
 */
 
+import '../lib/utils/logger.dart';
+
 import '../lib/transport/server.dart';
 
 import 'dart:async';
 
 void main() =>
     runZonedGuarded(() async => await startGrpcServer(), (error, stack) {
-      print('error $error');
+      logger('catch error  runZoneGuarded :  $error');
     });

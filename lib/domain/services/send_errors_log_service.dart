@@ -7,12 +7,16 @@ import '../../crypto/crypto_helpers.dart';
 import '../../transport/protos/generated/server_interactions.pb.dart';
 import '../../utils/extensions/extension_as_Uint8List.dart';
 import '../../utils/logger.dart';
+import '../users_db_repository.dart';
 import '../users_pool.dart';
 
 class SendErrorsLogService {
   final UsersPool _usersPool;
+  final UsersDbRepository _usersDbRepository;
 
-  SendErrorsLogService({required usersPool}) : _usersPool = usersPool;
+  SendErrorsLogService({required usersPool, required usersDbRepository})
+      : _usersPool = usersPool,
+        _usersDbRepository = usersDbRepository;
 
   Future<StatisticsDataReply> call(
       {required String token, required Stream<ErrorLogItem> param}) async {
@@ -21,6 +25,7 @@ class SendErrorsLogService {
     var currentAESKey = _usersPool.getAESKey(token);
 
     if (currentAESKey != null) {
+      final  playerId = _usersPool.getPlayerId(token);
       await for (var log in param) {
         var cryptoAES = CryptoAES(key: currentAESKey, iv: log.iv);
         var decryptedData = await cryptoAES.decrypt(log.message);
@@ -31,6 +36,7 @@ class SendErrorsLogService {
             generateCheckSum(createUint8ListFromString(decryptedMessage));
         if (ListEquality().equals(log.digest, calculatedDigest)) {
           errors.add(decryptedMessage);
+          _usersDbRepository.insertErrorLog(playerId: playerId, error: decryptedMessage);
         } else {
           int i = 0;
           logger('receive error log stream;');
