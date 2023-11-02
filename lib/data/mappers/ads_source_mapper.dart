@@ -3,6 +3,8 @@ import '../../transport/protos/generated/server_interactions.pbenum.dart';
 import '../models/hand_description_model.dart';
 import '../source/database/database.dart';
 
+
+/// convert Ads source from proto to AdsSource
 AdsSource? adsSourceMapper(AdsStatisticRequest_AdsSource param) {
   return switch (param) {
     AdsStatisticRequest_AdsSource.ADMOB_INTERSTITIALS => AdsSource.adMobInterstitial,
@@ -13,6 +15,7 @@ AdsSource? adsSourceMapper(AdsStatisticRequest_AdsSource param) {
   };
 }
 
+/// convert card description from proto to List
 List<Card> handsMapper(List<GameStatisticData_CardDescription> cards) {
   final decodedHand = <Card>[];
   for (var element in cards) {
@@ -21,6 +24,7 @@ List<Card> handsMapper(List<GameStatisticData_CardDescription> cards) {
   return decodedHand;
 }
 
+/// suits enum
 enum Suits {
   spade(value: 0, name: 'SPADE'),
   heart(value: 1, name: 'HEART'),
@@ -33,6 +37,7 @@ enum Suits {
   const Suits({required this.value, required this.name});
 }
 
+/// value enums
 enum Values {
   val2(value: 0, name: '2'),
   val3(value: 1, name: '3'),
@@ -54,6 +59,7 @@ enum Values {
   const Values({required this.value, required this.name});
 }
 
+/// game results enum
 enum GameResults {
   push(value: 1, name: 'PUSH'),
   fold(value: 2, name: 'FOLD'),
@@ -68,7 +74,7 @@ enum GameResults {
 }
 
 
-
+/// card decoder
 Card _decodeCard(GameStatisticData_CardDescription card) {
   String value = 'unknown';
   String suit = 'unknown';
@@ -87,6 +93,7 @@ Card _decodeCard(GameStatisticData_CardDescription card) {
   return (suit: suit, value: value);
 }
 
+/// mapper to GameResult from int
 GameResults gameResultMapper(int result) {
   for (var element in GameResults.values) {
     if (element.value == result) return element;

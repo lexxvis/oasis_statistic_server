@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:pointycastle/api.dart';
 import 'package:pointycastle/digests/md5.dart';
+import 'package:pointycastle/digests/sha3.dart';
 
 import '../utils/extensions/extension_as_Uint8List.dart';
 
@@ -42,68 +43,13 @@ Uint8List bigIntToUint8List(BigInt value) {
 
 String generateToken(String seed) {
   const List alphanumeric = [
-    'A',
-    'B',
-    'C',
-    'D',
-    'E',
-    'F',
-    'G',
-    'H',
-    'I',
-    'J',
-    'K',
-    'L',
-    'M',
-    'N',
-    'O',
-    'P',
-    'Q',
-    'R',
-    'S',
-    'T',
-    'U',
-    'V',
-    'W',
-    'X',
-    'Y',
-    'Z',
-    'a',
-    'b',
-    'c',
-    'd',
-    'e',
-    'f',
-    'g',
-    'h',
-    'i',
-    'j',
-    'k',
-    'l',
-    'm',
-    'n',
-    'o',
-    'p',
-    'q',
-    'r',
-    's',
-    't',
-    'u',
-    'v',
-    'w',
-    'z',
-    'y',
-    'z',
-    '0',
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9'
+    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
+    'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+    'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a',
+    'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+    'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
+    't', 'u', 'v', 'w', 'z', 'y', 'z', '0', '1',
+    '2', '3', '4', '5', '6', '7', '8', '9'
   ];
 
   const int length = 32;
@@ -119,6 +65,12 @@ String generateToken(String seed) {
   var result = output.map((e) => e.toRadixString(16).padLeft(2, '0')).join();
   return result;
 }
+
+Uint8List generateSHA3Hash(Uint8List input) {
+  final sha3 = SHA3Digest(512);
+  return sha3.process(input);
+}
+
 
 List<int> generateCheckSum(List<int> input) {
   final md5 = MD5Digest();

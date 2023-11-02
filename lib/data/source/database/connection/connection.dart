@@ -4,6 +4,9 @@ import 'dart:io';
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 
+/// open lazy connection of DB in current directory
+/// name of db file is [sqlite3.dll] only if running in Windows OS
+/// in Linux ( main hosted  OS ) just open file
 LazyDatabase openConnection() {
   if (Platform.isWindows) _openSqliteLibrary('\\sqlite3.dll');
   return LazyDatabase(() async {

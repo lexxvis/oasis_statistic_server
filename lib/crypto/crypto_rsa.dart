@@ -9,8 +9,8 @@ import '../utils/extensions/extension_as_Uint8List.dart';
 import '../utils/logger.dart';
 
 
-//max encrypted message length is equal of RSA key size - header
-// e.g if key size - 2048bit = 256bytes - 11bytes padding&header data for  PKCS#1 v1.5 padding
+///max encrypted message length is equal of RSA key size - header
+/// e.g if key size - 2048bit = 256bytes - 11bytes padding&header data for  PKCS#1 v1.5 padding
 
 class CryptoRSA {
   CryptoRSA._privateConstructor();

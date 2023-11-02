@@ -24,6 +24,8 @@ import '../lib/transport/server.dart';
 
 import 'dart:async';
 
+/// start server entry point in own Zone
+/// catch and log errors to console
 void main() =>
     runZonedGuarded(() async => await startGrpcServer(), (error, stack) {
       logger('catch error  runZoneGuarded :  $error');

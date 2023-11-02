@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ActiveUserModel {
   String get playerId => throw _privateConstructorUsedError;
   Uint8List get sessionAESKey => throw _privateConstructorUsedError;
+  Role get role => throw _privateConstructorUsedError;
   int get lastActivityTime => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +32,11 @@ abstract class $ActiveUserModelCopyWith<$Res> {
           ActiveUserModel value, $Res Function(ActiveUserModel) then) =
       _$ActiveUserModelCopyWithImpl<$Res, ActiveUserModel>;
   @useResult
-  $Res call({String playerId, Uint8List sessionAESKey, int lastActivityTime});
+  $Res call(
+      {String playerId,
+      Uint8List sessionAESKey,
+      Role role,
+      int lastActivityTime});
 }
 
 /// @nodoc
@@ -49,6 +54,7 @@ class _$ActiveUserModelCopyWithImpl<$Res, $Val extends ActiveUserModel>
   $Res call({
     Object? playerId = null,
     Object? sessionAESKey = null,
+    Object? role = null,
     Object? lastActivityTime = null,
   }) {
     return _then(_value.copyWith(
@@ -60,6 +66,10 @@ class _$ActiveUserModelCopyWithImpl<$Res, $Val extends ActiveUserModel>
           ? _value.sessionAESKey
           : sessionAESKey // ignore: cast_nullable_to_non_nullable
               as Uint8List,
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as Role,
       lastActivityTime: null == lastActivityTime
           ? _value.lastActivityTime
           : lastActivityTime // ignore: cast_nullable_to_non_nullable
@@ -76,7 +86,11 @@ abstract class _$$_ActiveUserModelCopyWith<$Res>
       __$$_ActiveUserModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String playerId, Uint8List sessionAESKey, int lastActivityTime});
+  $Res call(
+      {String playerId,
+      Uint8List sessionAESKey,
+      Role role,
+      int lastActivityTime});
 }
 
 /// @nodoc
@@ -92,6 +106,7 @@ class __$$_ActiveUserModelCopyWithImpl<$Res>
   $Res call({
     Object? playerId = null,
     Object? sessionAESKey = null,
+    Object? role = null,
     Object? lastActivityTime = null,
   }) {
     return _then(_$_ActiveUserModel(
@@ -103,6 +118,10 @@ class __$$_ActiveUserModelCopyWithImpl<$Res>
           ? _value.sessionAESKey
           : sessionAESKey // ignore: cast_nullable_to_non_nullable
               as Uint8List,
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as Role,
       lastActivityTime: null == lastActivityTime
           ? _value.lastActivityTime
           : lastActivityTime // ignore: cast_nullable_to_non_nullable
@@ -117,6 +136,7 @@ class _$_ActiveUserModel implements _ActiveUserModel {
   const _$_ActiveUserModel(
       {required this.playerId,
       required this.sessionAESKey,
+      this.role = Role.user,
       required this.lastActivityTime});
 
   @override
@@ -124,11 +144,14 @@ class _$_ActiveUserModel implements _ActiveUserModel {
   @override
   final Uint8List sessionAESKey;
   @override
+  @JsonKey()
+  final Role role;
+  @override
   final int lastActivityTime;
 
   @override
   String toString() {
-    return 'ActiveUserModel(playerId: $playerId, sessionAESKey: $sessionAESKey, lastActivityTime: $lastActivityTime)';
+    return 'ActiveUserModel(playerId: $playerId, sessionAESKey: $sessionAESKey, role: $role, lastActivityTime: $lastActivityTime)';
   }
 
   @override
@@ -140,13 +163,18 @@ class _$_ActiveUserModel implements _ActiveUserModel {
                 other.playerId == playerId) &&
             const DeepCollectionEquality()
                 .equals(other.sessionAESKey, sessionAESKey) &&
+            (identical(other.role, role) || other.role == role) &&
             (identical(other.lastActivityTime, lastActivityTime) ||
                 other.lastActivityTime == lastActivityTime));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, playerId,
-      const DeepCollectionEquality().hash(sessionAESKey), lastActivityTime);
+  int get hashCode => Object.hash(
+      runtimeType,
+      playerId,
+      const DeepCollectionEquality().hash(sessionAESKey),
+      role,
+      lastActivityTime);
 
   @JsonKey(ignore: true)
   @override
@@ -159,12 +187,15 @@ abstract class _ActiveUserModel implements ActiveUserModel {
   const factory _ActiveUserModel(
       {required final String playerId,
       required final Uint8List sessionAESKey,
+      final Role role,
       required final int lastActivityTime}) = _$_ActiveUserModel;
 
   @override
   String get playerId;
   @override
   Uint8List get sessionAESKey;
+  @override
+  Role get role;
   @override
   int get lastActivityTime;
   @override

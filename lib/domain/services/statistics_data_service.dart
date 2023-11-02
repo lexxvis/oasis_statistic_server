@@ -13,6 +13,7 @@ import '../../utils/logger.dart';
 import '../users_db_repository.dart';
 import '../users_pool.dart';
 
+/// callable class
 class StatisticDataService {
   final UsersPool _usersPool;
   final UsersDbRepository _usersDbRepository;

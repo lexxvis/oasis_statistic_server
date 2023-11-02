@@ -1,3 +1,9 @@
+/// intermediate  proto file
+/// uses to serialize/deserialize data structures to byte array
+/// byte array uses to AES encrypt and generate hash
+/// this byte array uses in main proto file
+/// for example: ConnectionRequestData => byte array => encrypted_auth_data (AuthRequest)
+
 syntax = "proto3";
 package intermediate;
 

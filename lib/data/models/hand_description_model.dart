@@ -4,6 +4,8 @@ part 'hand_description_model.freezed.dart';
 
 typedef Card = ({String suit, String value});
 
+/// Hand card description data model stored in SQLite
+/// stored as json string in DB
 @freezed
 class HandDescriptionModel with _$HandDescriptionModel {
   const factory HandDescriptionModel(List<Card> cards) = _HandDescriptionModel;

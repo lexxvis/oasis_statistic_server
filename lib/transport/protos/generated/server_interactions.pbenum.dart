@@ -4,7 +4,7 @@
 //
 // @dart = 2.12
 
-// ignore_for_file: annotate_overrides, camel_case_types
+// ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names, library_prefixes
 // ignore_for_file: non_constant_identifier_names, prefer_final_fields
 // ignore_for_file: unnecessary_import, unnecessary_this, unused_import
@@ -30,6 +30,25 @@ class ResultStatus extends $pb.ProtobufEnum {
   static ResultStatus? valueOf($core.int value) => _byValue[value];
 
   const ResultStatus._($core.int v, $core.String n) : super(v, n);
+}
+
+class AuthReply_Result extends $pb.ProtobufEnum {
+  static const AuthReply_Result CODE_UNSPECIFIED = AuthReply_Result._(0, _omitEnumNames ? '' : 'CODE_UNSPECIFIED');
+  static const AuthReply_Result OK = AuthReply_Result._(1, _omitEnumNames ? '' : 'OK');
+  static const AuthReply_Result ERROR = AuthReply_Result._(2, _omitEnumNames ? '' : 'ERROR');
+  static const AuthReply_Result ALREADY_EXIST = AuthReply_Result._(3, _omitEnumNames ? '' : 'ALREADY_EXIST');
+
+  static const $core.List<AuthReply_Result> values = <AuthReply_Result> [
+    CODE_UNSPECIFIED,
+    OK,
+    ERROR,
+    ALREADY_EXIST,
+  ];
+
+  static final $core.Map<$core.int, AuthReply_Result> _byValue = $pb.ProtobufEnum.initByValue(values);
+  static AuthReply_Result? valueOf($core.int value) => _byValue[value];
+
+  const AuthReply_Result._($core.int v, $core.String n) : super(v, n);
 }
 
 class AdsStatisticRequest_AdsSource extends $pb.ProtobufEnum {

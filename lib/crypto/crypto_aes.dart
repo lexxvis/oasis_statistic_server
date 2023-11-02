@@ -9,7 +9,7 @@ import 'package:pointycastle/paddings/pkcs7.dart';
 
 import '../utils/extensions/extension_as_Uint8List.dart';
 
-// generate IV every transaction and send in open with encrypted data
+/// generate IV every transaction and send in open with encrypted data
 
 class CryptoAES {
 

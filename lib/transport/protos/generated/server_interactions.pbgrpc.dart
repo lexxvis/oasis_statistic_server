@@ -4,7 +4,7 @@
 //
 // @dart = 2.12
 
-// ignore_for_file: annotate_overrides, camel_case_types
+// ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names, library_prefixes
 // ignore_for_file: non_constant_identifier_names, prefer_final_fields
 // ignore_for_file: unnecessary_import, unnecessary_this, unused_import
@@ -41,6 +41,14 @@ class InteractionsClient extends $grpc.Client {
       '/server_interactions.Interactions/CloseConnection',
       ($0.CloseInformation value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.Empty.fromBuffer(value));
+  static final _$authAdmin = $grpc.ClientMethod<$0.AuthRequest, $0.AuthReply>(
+      '/server_interactions.Interactions/AuthAdmin',
+      ($0.AuthRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.AuthReply.fromBuffer(value));
+  static final _$closeAdminConnection = $grpc.ClientMethod<$0.Empty, $0.Empty>(
+      '/server_interactions.Interactions/CloseAdminConnection',
+      ($0.Empty value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.Empty.fromBuffer(value));
 
   InteractionsClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -66,6 +74,14 @@ class InteractionsClient extends $grpc.Client {
 
   $grpc.ResponseFuture<$0.Empty> closeConnection($0.CloseInformation request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$closeConnection, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.AuthReply> authAdmin($0.AuthRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$authAdmin, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.Empty> closeAdminConnection($0.Empty request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$closeAdminConnection, request, options: options);
   }
 }
 
@@ -109,6 +125,20 @@ abstract class InteractionsServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $0.CloseInformation.fromBuffer(value),
         ($0.Empty value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.AuthRequest, $0.AuthReply>(
+        'AuthAdmin',
+        authAdmin_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.AuthRequest.fromBuffer(value),
+        ($0.AuthReply value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.Empty, $0.Empty>(
+        'CloseAdminConnection',
+        closeAdminConnection_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.Empty.fromBuffer(value),
+        ($0.Empty value) => value.writeToBuffer()));
   }
 
   $async.Future<$0.ConnectionReply> establishConnection_Pre($grpc.ServiceCall call, $async.Future<$0.ConnectionRequest> request) async {
@@ -127,9 +157,19 @@ abstract class InteractionsServiceBase extends $grpc.Service {
     return closeConnection(call, await request);
   }
 
+  $async.Future<$0.AuthReply> authAdmin_Pre($grpc.ServiceCall call, $async.Future<$0.AuthRequest> request) async {
+    return authAdmin(call, await request);
+  }
+
+  $async.Future<$0.Empty> closeAdminConnection_Pre($grpc.ServiceCall call, $async.Future<$0.Empty> request) async {
+    return closeAdminConnection(call, await request);
+  }
+
   $async.Future<$0.ConnectionReply> establishConnection($grpc.ServiceCall call, $0.ConnectionRequest request);
   $async.Future<$0.StatisticsDataReply> statisticsData($grpc.ServiceCall call, $0.StatisticsDataRequest request);
   $async.Future<$0.StatisticsDataReply> adsStatisticData($grpc.ServiceCall call, $0.AdsStatisticRequest request);
   $async.Future<$0.StatisticsDataReply> sendErrorsLog($grpc.ServiceCall call, $async.Stream<$0.ErrorLogItem> request);
   $async.Future<$0.Empty> closeConnection($grpc.ServiceCall call, $0.CloseInformation request);
+  $async.Future<$0.AuthReply> authAdmin($grpc.ServiceCall call, $0.AuthRequest request);
+  $async.Future<$0.Empty> closeAdminConnection($grpc.ServiceCall call, $0.Empty request);
 }

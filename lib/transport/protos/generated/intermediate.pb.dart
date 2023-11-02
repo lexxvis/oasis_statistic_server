@@ -4,7 +4,7 @@
 //
 // @dart = 2.12
 
-// ignore_for_file: annotate_overrides, camel_case_types
+// ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names, library_prefixes
 // ignore_for_file: non_constant_identifier_names, prefer_final_fields
 // ignore_for_file: unnecessary_import, unnecessary_this, unused_import
@@ -14,7 +14,19 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class ConnectionRequestData extends $pb.GeneratedMessage {
-  factory ConnectionRequestData() => create();
+  factory ConnectionRequestData({
+    $core.String? playerId,
+    $core.String? countryCode,
+  }) {
+    final $result = create();
+    if (playerId != null) {
+      $result.playerId = playerId;
+    }
+    if (countryCode != null) {
+      $result.countryCode = countryCode;
+    }
+    return $result;
+  }
   ConnectionRequestData._() : super();
   factory ConnectionRequestData.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory ConnectionRequestData.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
@@ -66,7 +78,19 @@ class ConnectionRequestData extends $pb.GeneratedMessage {
 }
 
 class GameStatisticData_CardDescription extends $pb.GeneratedMessage {
-  factory GameStatisticData_CardDescription() => create();
+  factory GameStatisticData_CardDescription({
+    $core.int? suit,
+    $core.int? value,
+  }) {
+    final $result = create();
+    if (suit != null) {
+      $result.suit = suit;
+    }
+    if (value != null) {
+      $result.value = value;
+    }
+    return $result;
+  }
   GameStatisticData_CardDescription._() : super();
   factory GameStatisticData_CardDescription.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory GameStatisticData_CardDescription.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
@@ -118,7 +142,51 @@ class GameStatisticData_CardDescription extends $pb.GeneratedMessage {
 }
 
 class GameStatisticData extends $pb.GeneratedMessage {
-  factory GameStatisticData() => create();
+  factory GameStatisticData({
+    $core.int? balance,
+    $core.int? goldBalance,
+    $core.int? bet,
+    $core.int? win,
+    $core.int? ante,
+    $core.int? level,
+    $core.int? gameResult,
+    $core.Iterable<GameStatisticData_CardDescription>? dealerHand,
+    $core.Iterable<GameStatisticData_CardDescription>? playerHand,
+    $core.Iterable<GameStatisticData_CardDescription>? playerUnchangedHand,
+  }) {
+    final $result = create();
+    if (balance != null) {
+      $result.balance = balance;
+    }
+    if (goldBalance != null) {
+      $result.goldBalance = goldBalance;
+    }
+    if (bet != null) {
+      $result.bet = bet;
+    }
+    if (win != null) {
+      $result.win = win;
+    }
+    if (ante != null) {
+      $result.ante = ante;
+    }
+    if (level != null) {
+      $result.level = level;
+    }
+    if (gameResult != null) {
+      $result.gameResult = gameResult;
+    }
+    if (dealerHand != null) {
+      $result.dealerHand.addAll(dealerHand);
+    }
+    if (playerHand != null) {
+      $result.playerHand.addAll(playerHand);
+    }
+    if (playerUnchangedHand != null) {
+      $result.playerUnchangedHand.addAll(playerUnchangedHand);
+    }
+    return $result;
+  }
   GameStatisticData._() : super();
   factory GameStatisticData.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory GameStatisticData.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);

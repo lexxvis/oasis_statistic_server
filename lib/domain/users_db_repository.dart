@@ -1,6 +1,7 @@
 import '../data/models/game_statisctic_model.dart';
 import '../data/source/database/database.dart';
 
+/// interface to communicate with data layer
 abstract interface class UsersDbRepository {
   Future<void> insertOrUpdateUser(
       {required String playerId,

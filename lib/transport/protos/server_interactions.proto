@@ -2,12 +2,16 @@
 // dart pub global activate protoc_plugin
 // protoc *.proto --dart_out=grpc:./generated
 
+// base proto descriptions to communicate with game client
+// and admin flutter app
+
 syntax = "proto3";
 package server_interactions;
 
 option java_multiple_files = true;
 option java_package = "com.lexxvis.oasispoker";
 option java_outer_classname = "ServerInteractions";
+
 
 enum ResultStatus {
   CODE_UNSPECIFIED = 0;
@@ -22,7 +26,35 @@ service  Interactions {
   rpc AdsStatisticData(AdsStatisticRequest) returns (StatisticsDataReply);
   rpc SendErrorsLog(stream ErrorLogItem) returns (StatisticsDataReply);
   rpc CloseConnection(CloseInformation) returns (Empty);
+
+  rpc AuthAdmin(AuthRequest) returns (AuthReply);
+  rpc CloseAdminConnection(Empty) returns (Empty);
+
 }
+
+message AuthRequest {
+  bytes encrypted_auth_data = 1;
+  bytes dh_exchange_key = 2;
+}
+
+message EncryptedAuthData {
+  bytes hash = 1;
+  bytes challenge = 2;
+}
+
+message AuthReply {
+  enum Result {
+    CODE_UNSPECIFIED = 0;
+    OK = 1;
+    ERROR = 2;
+    ALREADY_EXIST = 3;
+  }
+  Result result = 1;
+  bytes dh_exchange_key = 2;
+  bytes digest = 3;
+  string token = 4;
+}
+
 
 message ErrorLogItem {
   bytes message = 1;

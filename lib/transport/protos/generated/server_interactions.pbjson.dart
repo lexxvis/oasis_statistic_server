@@ -4,7 +4,7 @@
 //
 // @dart = 2.12
 
-// ignore_for_file: annotate_overrides, camel_case_types
+// ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names, library_prefixes
 // ignore_for_file: non_constant_identifier_names, prefer_final_fields
 // ignore_for_file: unnecessary_import, unnecessary_this, unused_import
@@ -28,6 +28,65 @@ const ResultStatus$json = {
 final $typed_data.Uint8List resultStatusDescriptor = $convert.base64Decode(
     'CgxSZXN1bHRTdGF0dXMSFAoQQ09ERV9VTlNQRUNJRklFRBAAEgYKAk9LEAESCQoFRVJST1IQAh'
     'ITCg9UT0tFTl9OT1RfRk9VTkQQAw==');
+
+@$core.Deprecated('Use authRequestDescriptor instead')
+const AuthRequest$json = {
+  '1': 'AuthRequest',
+  '2': [
+    {'1': 'encrypted_auth_data', '3': 1, '4': 1, '5': 12, '10': 'encryptedAuthData'},
+    {'1': 'dh_exchange_key', '3': 2, '4': 1, '5': 12, '10': 'dhExchangeKey'},
+  ],
+};
+
+/// Descriptor for `AuthRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List authRequestDescriptor = $convert.base64Decode(
+    'CgtBdXRoUmVxdWVzdBIuChNlbmNyeXB0ZWRfYXV0aF9kYXRhGAEgASgMUhFlbmNyeXB0ZWRBdX'
+    'RoRGF0YRImCg9kaF9leGNoYW5nZV9rZXkYAiABKAxSDWRoRXhjaGFuZ2VLZXk=');
+
+@$core.Deprecated('Use encryptedAuthDataDescriptor instead')
+const EncryptedAuthData$json = {
+  '1': 'EncryptedAuthData',
+  '2': [
+    {'1': 'hash', '3': 1, '4': 1, '5': 12, '10': 'hash'},
+    {'1': 'challenge', '3': 2, '4': 1, '5': 12, '10': 'challenge'},
+  ],
+};
+
+/// Descriptor for `EncryptedAuthData`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List encryptedAuthDataDescriptor = $convert.base64Decode(
+    'ChFFbmNyeXB0ZWRBdXRoRGF0YRISCgRoYXNoGAEgASgMUgRoYXNoEhwKCWNoYWxsZW5nZRgCIA'
+    'EoDFIJY2hhbGxlbmdl');
+
+@$core.Deprecated('Use authReplyDescriptor instead')
+const AuthReply$json = {
+  '1': 'AuthReply',
+  '2': [
+    {'1': 'result', '3': 1, '4': 1, '5': 14, '6': '.server_interactions.AuthReply.Result', '10': 'result'},
+    {'1': 'dh_exchange_key', '3': 2, '4': 1, '5': 12, '10': 'dhExchangeKey'},
+    {'1': 'digest', '3': 3, '4': 1, '5': 12, '10': 'digest'},
+    {'1': 'token', '3': 4, '4': 1, '5': 9, '10': 'token'},
+  ],
+  '4': [AuthReply_Result$json],
+};
+
+@$core.Deprecated('Use authReplyDescriptor instead')
+const AuthReply_Result$json = {
+  '1': 'Result',
+  '2': [
+    {'1': 'CODE_UNSPECIFIED', '2': 0},
+    {'1': 'OK', '2': 1},
+    {'1': 'ERROR', '2': 2},
+    {'1': 'ALREADY_EXIST', '2': 3},
+  ],
+};
+
+/// Descriptor for `AuthReply`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List authReplyDescriptor = $convert.base64Decode(
+    'CglBdXRoUmVwbHkSPQoGcmVzdWx0GAEgASgOMiUuc2VydmVyX2ludGVyYWN0aW9ucy5BdXRoUm'
+    'VwbHkuUmVzdWx0UgZyZXN1bHQSJgoPZGhfZXhjaGFuZ2Vfa2V5GAIgASgMUg1kaEV4Y2hhbmdl'
+    'S2V5EhYKBmRpZ2VzdBgDIAEoDFIGZGlnZXN0EhQKBXRva2VuGAQgASgJUgV0b2tlbiJECgZSZX'
+    'N1bHQSFAoQQ09ERV9VTlNQRUNJRklFRBAAEgYKAk9LEAESCQoFRVJST1IQAhIRCg1BTFJFQURZ'
+    'X0VYSVNUEAM=');
 
 @$core.Deprecated('Use errorLogItemDescriptor instead')
 const ErrorLogItem$json = {

@@ -4,7 +4,7 @@ import 'hand_description_model.dart';
 
 part 'game_statisctic_model.freezed.dart';
 
-
+/// game statistic data model stored in SQLite
 @freezed
 class GameStatisticModel with _$GameStatisticModel {
   const factory GameStatisticModel({

@@ -5,6 +5,8 @@ import '../../utils/logger.dart';
 import '../models/game_statisctic_model.dart';
 import '../source/database/database.dart';
 
+/// Database repository implementation
+/// all requests to database handle here
 class UsersDbRepositoryImpl implements UsersDbRepository {
   final UsersDatabase _usersDatabase;
 
